@@ -73,9 +73,11 @@ const Country = () => {
               <div className="list-info info-03">
                 <span>Border Countries:</span>
                 <ul>
-                  {value.languages.map((item, index) => {
-                    return <li key={index}>{item.nativeName}</li>;
-                  })}
+                  {value.languages.length > 0
+                    ? value.languages.map((item, index) => {
+                        return <li key={index}>{item.nativeName}</li>;
+                      })
+                    : ""}
                 </ul>
               </div>
             </div>
