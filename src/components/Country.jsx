@@ -58,10 +58,17 @@ const Country = () => {
                     <span>Top Level Domain: </span>
                     <p>{value.topLevelDomain}</p>
                   </li>
-                  <li>
-                    <span>Currencies: </span>
-                    <p>{console.log(value?.currencies[0]?.name)}</p>
-                  </li>
+                  {"currencies" in value ? (
+                    <li>
+                      <span>Currencies: </span>
+                      <p>{value.currencies[0].name}</p>
+                    </li>
+                  ) : (
+                    <li>
+                      <span>Currencies: </span>
+                      <p></p>
+                    </li>
+                  )}
                   <li>
                     <span>Languages: </span>
                     {value.languages.map((value, index) => (
@@ -73,11 +80,9 @@ const Country = () => {
               <div className="list-info info-03">
                 <span>Border Countries:</span>
                 <ul>
-                  {value.languages.length > 0
-                    ? value.languages.map((item, index) => {
-                        return <li key={index}>{item.nativeName}</li>;
-                      })
-                    : ""}
+                  {value.languages.map((item, index) => (
+                    <li key={index}>{item.nativeName}</li>
+                  ))}
                 </ul>
               </div>
             </div>
