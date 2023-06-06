@@ -1,31 +1,36 @@
-const Card = ({ country, themeText, themeBackgroundElement }) => {
+import { Link, useLoaderData } from "react-router-dom";
+
+const Card = () => {
+  const { country } = useLoaderData();
   return (
-    <div
-      className={`${themeBackgroundElement} drop-shadow-xl cursor-pointer w-[350px] m-12`}
-    >
-      <img src={country.flags.svg} alt="img" />
-      <div className="py-12 px-6">
-        <h1 className={`${themeText} text-[1.8rem] font-bold mb-6`}>
-          {country.name}
-        </h1>
-        <ul>
-          <li className="flex gap-2">
-            <span className={`${themeText} font-semibold`}>Population: </span>
-            <p className={`${themeText} font-extralight`}>
-              {country.population}
-            </p>
-          </li>
-          <li className="flex gap-2">
-            <span className={`${themeText} font-semibold`}>Region: </span>
-            <p className={`${themeText} font-extralight`}>{country.region}</p>
-          </li>
-          <li className="flex gap-2">
-            <span className={`${themeText} font-semibold`}>Country: </span>
-            <p className={`${themeText} font-extralight`}>{country.capital}</p>
-          </li>
-        </ul>
-      </div>
-    </div>
+    <section className="container-card">
+      {country?.map((value, index) => {
+        return (
+          <article className="card" key={index}>
+            <Link to={`country/${value.name}`}>
+              <img className="card-flag" src={value.flag} alt="img" />
+              <div className="card-info">
+                <h1 className="card-name">{value.name}</h1>
+                <ul className="card-list">
+                  <li>
+                    <span>Population: </span>
+                    <p>{value.population}</p>
+                  </li>
+                  <li>
+                    <span>Region: </span>
+                    <p>{value.region}</p>
+                  </li>
+                  <li>
+                    <span>Capital:</span>
+                    <p>{value.capital}</p>
+                  </li>
+                </ul>
+              </div>
+            </Link>
+          </article>
+        );
+      })}
+    </section>
   );
 };
 

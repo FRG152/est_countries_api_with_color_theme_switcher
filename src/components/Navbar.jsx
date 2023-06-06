@@ -1,25 +1,18 @@
-import { BsFillMoonFill } from "react-icons/bs";
+import { BsMoonFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
-const Navbar = ({ themeText, themeBackgroundElement, changeTheme }) => {
+const Navbar = ({ switchTheme }) => {
   return (
-    <nav
-      className={`${themeBackgroundElement} drop-shadow-md mb-6 h-[70px] px-20`}
-    >
-      <ul className="flex items-center justify-between h-[100%]">
+    <nav className="navbar">
+      <ul>
         <li>
-          <a
-            href="#"
-            className={`${themeText} ${themeBackgroundElement} text-[1.5rem] font-extrabold`}
-          >
+          <Link to="/" className="nav-title">
             Where in the world?
-          </a>
+          </Link>
         </li>
-        <li
-          onClick={() => changeTheme()}
-          className="flex items-center gap-x-4 cursor-pointer"
-        >
-          <BsFillMoonFill />
-          <span className={`${themeText} font-medium`}>Dark Mode</span>
+        <li className="nav-btn" onClick={() => switchTheme()}>
+          <BsMoonFill />
+          <span type="submit">Dark Mode</span>
         </li>
       </ul>
     </nav>

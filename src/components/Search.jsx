@@ -1,22 +1,57 @@
+import { useState } from "react";
+import { IoIosArrowDown } from "react-icons/io";
 import { AiOutlineSearch } from "react-icons/ai";
+import { Form, useSubmit } from "react-router-dom";
 
-const Search = ({ search, themeText, themeBackgroundElement }) => {
+const Search = () => {
+  const submit = useSubmit();
+
+  const [showFilter, setShowFilter] = useState(false);
+  const [showSelected, setShowSelectd] = useState("Filter by Region");
+
+  const showList = () => setShowFilter(!showFilter);
+  const showSelect = (e) => {
+    setShowFilter(!showFilter);
+    submit(e.currentTarget.form);
+    setShowSelectd(e.currentTarget.innerText);
+  };
+
   return (
-    <div
-      className={`${themeBackgroundElement} drop-shadow-md relative h-[60px] lg:w-[500px]`}
-    >
-      <div className="flex items-center justify-center h-[100%]">
-        <AiOutlineSearch size="25" className="w-[80px]" />
+    <Form className="container-search">
+      <section className="container-input">
+        <AiOutlineSearch size="25" className="icon-search" />
         <input
-          id="search"
-          type="text"
           name="search"
-          onChange={(e) => search(e)}
-          className={`${themeBackgroundElement} ${themeText} h-[100%] w-[100%] p-2`}
+          type="search"
+          className="input"
           placeholder="Search for a country..."
+          onChange={(event) => {
+            submit(event.target.form);
+          }}
         />
-      </div>
-    </div>
+      </section>
+      <section className="container-filter" onClick={() => showList()}>
+        <span>{showSelected}</span>
+        <div style={showFilter ? { display: "flex" } : { display: "none" }}>
+          <button name="region" value="Africa" onClick={showSelect}>
+            Africa
+          </button>
+          <button name="region" value="Americas" onClick={showSelect}>
+            Americas
+          </button>
+          <button name="region" value="Asia" onClick={showSelect}>
+            Asia
+          </button>
+          <button name="region" value="Europe" onClick={showSelect}>
+            Europe
+          </button>
+          <button name="region" value="Oceania" onClick={showSelect}>
+            Oceania
+          </button>
+        </div>
+        <IoIosArrowDown className="icon-search" size="25" />
+      </section>
+    </Form>
   );
 };
 
