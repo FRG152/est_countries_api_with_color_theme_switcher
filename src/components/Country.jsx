@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { HiArrowLeft } from "react-icons/hi";
+import { motion } from "framer-motion";
 import { Form, redirect, useLoaderData, useParams } from "react-router-dom";
 
 export async function action() {
@@ -17,7 +18,11 @@ const Country = () => {
     setCity(newArr);
   }, []);
   return (
-    <section>
+    <motion.section
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+    >
       {city?.map((value, index) => {
         return (
           <article key={index} className="container-country">
@@ -89,7 +94,7 @@ const Country = () => {
           </article>
         );
       })}
-    </section>
+    </motion.section>
   );
 };
 

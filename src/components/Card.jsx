@@ -1,12 +1,20 @@
+import { useRef } from "react";
+import { motion } from "framer-motion";
 import { Link, useLoaderData } from "react-router-dom";
+import { container, item } from "../utils/animation";
 
 const Card = () => {
   const { country } = useLoaderData();
   return (
-    <section className="container-card">
+    <motion.section
+      initial="hidden"
+      animate="visible"
+      variants={container}
+      className="container-card"
+    >
       {country?.map((value, index) => {
         return (
-          <article className="card" key={index}>
+          <motion.article className="card" key={index} variants={item}>
             <Link to={`country/${value.name}`}>
               <img className="card-flag" src={value.flag} alt="img" />
               <div className="card-info">
@@ -27,10 +35,10 @@ const Card = () => {
                 </ul>
               </div>
             </Link>
-          </article>
+          </motion.article>
         );
       })}
-    </section>
+    </motion.section>
   );
 };
 

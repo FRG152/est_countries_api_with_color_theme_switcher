@@ -4,9 +4,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import App, { loader as AppLoader } from "./App.jsx";
 
-import Search from "./components/Search.jsx";
-
 import Card from "./components/Card.jsx";
+
+import Search from "./components/Search/Search.jsx";
 
 import Country, { action as CountryAction } from "./components/Country.jsx";
 
